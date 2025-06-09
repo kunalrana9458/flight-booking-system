@@ -5,6 +5,7 @@ class AirplaneRespository extends CrudRepository{
     constructor(){
         super(Airplane)
     }
+    
 }
 
 module.exports = {AirplaneRespository}
