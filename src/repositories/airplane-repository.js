@@ -8,4 +8,4 @@ class AirplaneRespository extends CrudRepository{
     
 }
 
-module.exports = {AirplaneRespository}
+module.exports = AirplaneRespository
