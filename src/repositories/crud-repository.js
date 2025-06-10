@@ -25,9 +25,15 @@ class CrudRepository {
                     id: data
                 }
             })
+            console.log(!response)
+            if(!response){
+                throw new AppError('Not able to find the resource',StatusCodes.NOT_FOUND)
+            }
+            console.log(response)
             return response
         } catch (error) {
             Logger.error(`Something went wrong in the crud Repo: destroy`)
+            throw error
         }
     }
 
