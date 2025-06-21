@@ -70,7 +70,6 @@ class CrudRepository {
             if(!response){
                 throw new AppError('Not able to find the resource',StatusCodes.NOT_FOUND)
             }
-            console.log(response)
             return response
         } catch (error) {
             console.log(error)
