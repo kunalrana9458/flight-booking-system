@@ -42,7 +42,27 @@ async function destroyCity(req,res) {
     }
 }
 
+/*
+  PATCH - /cities/:id for updating the data of the city
+*/
+async function updateCity(req,res) {
+    try {
+        const updateDetails = req.body
+        const city = await CityService.updateCity(req.params.id,updateDetails)
+        SuccessResponse.data = city
+        return res
+                 .status(StatusCodes.OK)
+                 .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.error = error
+        return res
+                 .status(error.statusCode)
+                 .json(ErrorResponse)
+    }
+}
+
 module.exports = {
     createCity,
-    destroyCity
+    destroyCity,
+    updateCity
 }
