@@ -24,5 +24,9 @@ router.delete('/:id',
     AirplaneController.destroyAirplane
 )
 
+// /api/v1/airplanes/:id - PUT 
+router.put('/:id',
+    AirplaneController.updateAirplane
+)
 
 module.exports = router
