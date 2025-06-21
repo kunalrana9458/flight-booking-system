@@ -4,6 +4,7 @@ const AppError = require("../utils/errors/app-error");
 
 const cityRepository = new CityRepository();
 
+
 async function createCity(data){
     try {
     const city = await cityRepository.create(data);
@@ -23,7 +24,19 @@ async function createCity(data){
   }
 }
 
+async function deleteCity(id){
+  try {
+    const response = await cityRepository.destroy(id)
+    return response
+  } catch (error) {
+    if(error.StatusCodes == StatusCodes.NOT_FOUND){
+      throw new AppError('City you are trying to delete is not present',error.statusCode)
+    }
+  }
+}
+
 
 module.exports = {
-    createCity
+    createCity,
+    deleteCity
 }
