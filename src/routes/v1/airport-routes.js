@@ -11,7 +11,7 @@ router.post('/',
 
 // /api/v1/airplanes - GET
 router.get('/',
-    AirportController.getAirport
+    AirportController.getAirports
 )
 
 // /api/v1/airplanes/:id - GET 
