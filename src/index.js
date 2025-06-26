@@ -13,4 +13,6 @@ app.use('/api',apiRoutes)
 
 app.listen(ServerConfig.PORT,() => {
     console.log(`Successfully Started the server on PORT: ${ServerConfig.PORT}`);
+    
 });
+

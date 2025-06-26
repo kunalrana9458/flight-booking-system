@@ -23,6 +23,27 @@ async function createFlight(data) {
   }
 }
 
+async function getAllFlights(query){
+  let customFilter = {}
+  // trips=MUM-DEL
+  console.log(query.trips)
+  if(query.trips){
+    [departureAirportId,arrivalAirportId] = query.trips.split('-')
+    customFilter.departureAirportId = departureAirportId
+    customFilter.arrivalAirportId = arrivalAirportId
+    console.log("Custom filter is:",customFilter)
+    // TODO: add a check that departureAirportId and arrivalAirportId should not be same
+  }
+  try {
+    console.log("Flights in service:")
+    const flights = await flightRepository.getAllFlights(customFilter)
+    return flights;
+  } catch (error) {
+    throw new AppError('Cannot fetch data of all flights',StatusCodes.INTERNAL_SERVER_ERROR)
+  }
+}
+
 module.exports = {
   createFlight,
+  getAllFlights
 };
