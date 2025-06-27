@@ -39,6 +39,11 @@ async function getAllFlights(query){
       [Op.between]:[minPrice,(maxPrice == undefined) ? 20000 : maxPrice]
     }
   }
+  if(query.travellers){
+    customFilter.totalSeats = {
+      [Op.gte]: query.travellers
+    }
+  }
   try {
     const flights = await flightRepository.getAllFlights(customFilter)
     return flights;
