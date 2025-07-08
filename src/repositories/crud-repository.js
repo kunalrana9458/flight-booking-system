@@ -1,6 +1,6 @@
 const {StatusCodes} = require('http-status-codes')
-const {Logger} = require('../config')
 const AppError = require('../utils/errors/app-error')
+const logger = require('../config/logger-config')
 
 class CrudRepository {
     constructor(model){
@@ -13,7 +13,7 @@ class CrudRepository {
             return response
         } catch (error) {
             console.log(error)
-            Logger.error(`Something went wrong in the crud Repo: create`)
+            logger.error(`Something went wrong in the crud Repo: create`)
             throw error
         }
     }
@@ -32,7 +32,7 @@ class CrudRepository {
             console.log(response)
             return response
         } catch (error) {
-            Logger.error(`Something went wrong in the crud Repo: destroy`)
+            logger.error(`Something went wrong in the crud Repo: destroy`)
             throw error
         }
     }
@@ -45,7 +45,7 @@ class CrudRepository {
             }
             return response;
         } catch (error) {
-            Logger.error(`Something went wrong in the Crud Repo: get`)
+            logger.error(`Something went wrong in the Crud Repo: get`)
             throw error
         }
     }
@@ -55,7 +55,7 @@ class CrudRepository {
             const response = await this.model.findAll()
             return response
         } catch (error) {
-            Logger.error(`Something went wrong in the CRUD Repo : getAll`)
+            logger.error(`Something went wrong in the CRUD Repo : getAll`)
             throw error
         }
     }
@@ -73,7 +73,7 @@ class CrudRepository {
             return response
         } catch (error) {
             console.log(error)
-            Logger.error(`Something went wrong in the CRUD : Update`)
+            logger.error(`Something went wrong in the CRUD : Update`)
             throw error
         }
     }
