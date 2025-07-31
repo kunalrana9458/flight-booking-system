@@ -8,6 +8,9 @@ class FlightRepository extends CrudRepository {
   }
 
   async getAllFlights(filter, sort) {
+    if (Object.keys(sort).length === 0 && sort.constructor === Object) {
+         sort = []; // convert empty object to the empty array because order takes only array
+    }
     const response = await Flight.findAll({
       where: filter,
       order: sort,
