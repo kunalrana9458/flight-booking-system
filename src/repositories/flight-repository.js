@@ -1,6 +1,6 @@
 const CrudRepository = require("./crud-repository");
 const { Flight, Airplane, Airport } = require("../models");
-const { Sequelize } = require("sequelize");
+const { Sequelize, where } = require("sequelize");
 
 class FlightRepository extends CrudRepository {
   constructor() {
@@ -9,7 +9,7 @@ class FlightRepository extends CrudRepository {
 
   async getAllFlights(filter, sort) {
     if (Object.keys(sort).length === 0 && sort.constructor === Object) {
-         sort = []; // convert empty object to the empty array because order takes only array
+      sort = []; // convert empty object to the empty array because order takes only array
     }
     const response = await Flight.findAll({
       where: filter,
@@ -47,6 +47,20 @@ class FlightRepository extends CrudRepository {
       ],
     });
     return response;
+  }
+
+  async updateRemainingSeats(flightId, seats, des = true) {
+    const flight = await Flight.findByPk(flightId)
+    if (parseInt(des)) {
+      await flight.decrement("totalSeats", {
+        by: seats,
+      });
+    } else {
+      await flight .increment("totalSeats", {
+        by: seats,
+      });
+    }
+    return flight
   }
 }
 
