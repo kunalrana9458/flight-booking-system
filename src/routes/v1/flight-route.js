@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {FlightController} = require('../../controllers')
 const {FlightMiddleware} = require('../../middlewares')
-
+const {RateLimiter} = require('../../middlewares')
 
 // /api/v1/flights - POST
 router.post('/',
@@ -11,6 +11,7 @@ router.post('/',
 
 // /api/v1/flights?trips=MUM-DEL - GET
 router.get('/',
+    RateLimiter.searchFlightLimiter,
     FlightController.getAllFlights)
 
 
