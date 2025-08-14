@@ -3,7 +3,6 @@ const router = express.Router()
 const {AirportController} = require('../../controllers')
 const {AirportMiddleware} = require('../../middlewares')
 
-
 // /api/v1/airplanes - POST
 router.post('/',
     AirportMiddleware.validateCreateRequest,

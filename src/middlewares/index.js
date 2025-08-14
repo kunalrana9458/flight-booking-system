@@ -1,7 +1,9 @@
+
 module.exports = {
     AirplaneMiddleware: require('./airplane-middleware'),
     CityMiddleware : require('./city-middlewares'),
     AirportMiddleware: require('./airport-middleware'),
     FlightMiddleware: require('./flight-middleware'),
-    RateLimiter: require('./rate-limiter')
+    RateLimiter: require('./rate-limiter'),
+    ValidateRequest: require('./validate-request')
 }
